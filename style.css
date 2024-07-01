@@ -1,5 +1,5 @@
 * {
-    font-family:cursive;
+    font-family: cursive;
 }
 
 body{
@@ -20,18 +20,18 @@ main {
     height: 100vh;
     justify-content: center;
     align-items: center;
-  }
+}
 
 h1{
     color: #fff;
     padding: 1rem;
+    text-align: center;
 }
 
 p{
     font-size: 20px;
     padding: 1rem;
     color: #fff;
-
 }
 
 figure {
@@ -42,42 +42,43 @@ figure {
     align-items: center;
     gap: 0.5rem; /* Adjusts the gap between the image and the caption */
     width: 100%; /* Ensures the figure takes the full width */
-  }
+}
 
 figcaption{
     font-family: cursive;
 }
 
-.lesenbutton {
-    max-width: 10%;
-    height: 50%;
-    position: fixed;
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 1rem; /* Space between the buttons */
+    margin: 2rem 0; /* Margin on top and bottom of the container */
+    width: 100%;
+}
+
+.lesenbutton, .backbutton, .kapitelbutton {
+    position: relative; /* Required for the pseudo-elements to be positioned correctly */
+    height: 50px; /* Einheitliche Höhe der Buttons */
     background-image: url(button.jpg);
     display: inline-block;
     text-decoration: none; /* Remove underline from links */
     border: 2px solid #634302;
     border-radius: 10px;
     box-shadow: 0 5px #634302, 0 10px 15px rgba(0, 0, 0, 0.5);
-    color: #634302;
+    color: #432d01;
     cursor: pointer;
     font-family: cursive;
     font-size: 0.8em;
     text-align: center;
     padding: 10px 40px;
-    position: relative;
     text-shadow: 1px 1px 2px #000;
     overflow: hidden; /* Clip pseudo-element animation */
     transition: all 0.3s ease;
-    margin-left: 85%;
-    margin-top: 2rem;
-    margin-bottom: 10rem;
-    bottom: 20px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    z-index: 999; /* Ensure button is above other content */
-    margin-bottom: 25%;
+    margin-bottom: 30%;
 }
 
-.lesenbutton::before, .lesenbutton::after {
+/* Pseudo-Elemente für Effekte */
+.lesenbutton::before, .lesenbutton::after, .backbutton::before, .backbutton::after, .kapitelbutton::before, .kapitelbutton::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -92,7 +93,7 @@ figcaption{
     z-index: -1; /* Behind button content */
 }
 
-.lesenbutton::after {
+.lesenbutton::after, .backbutton::after, .kapitelbutton::after {
     background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.5), transparent);
     animation: sparkle 2s ease-in-out infinite;
 }
@@ -112,29 +113,29 @@ figcaption{
     }
 }
 
-.lesenbutton:hover {
+.lesenbutton:hover, .backbutton:hover, .kapitelbutton:hover {
     box-shadow: 0 2px #634302, 0 5px 10px rgba(0, 0, 0, 0.3);
     color: #634302;
     text-shadow: 1px 1px 3px #000;
 }
 
-.lesenbutton:hover::before, .lesenbutton:hover::after {
+.lesenbutton:hover::before, .lesenbutton:hover::after, .backbutton:hover::before, .backbutton:hover::after, .kapitelbutton:hover::before, .kapitelbutton:hover::after {
     transform: translate(-50%, -50%) scale(1.5);
     opacity: 0;
 }
 
-.lesenbutton:active {
-    color: #634302 !important; /* Important to override any other styles */
+.lesenbutton:active, .backbutton:active, .kapitelbutton:active {
+    color: #634302;
     box-shadow: 0 2px #634302, 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 a {
     text-decoration: none;
-    color: #634302;
+    color: #3e2a01;
 }
 
 a:hover {
-    color: #b97c03 !important;
+    color: #c88602 !important;
 }
 
 .column {
@@ -144,28 +145,38 @@ a:hover {
     align-items: center;
     width: 100%; /* Ensures the column takes the full width */
     padding: 0.5rem; /* Optional: Adds padding to the column */
-  }
+}
   
-  .row {
+.row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     width: 100%; /* Ensures the row takes the full width */
     justify-content: space-between;
-  }
+}
   
-  .row figure {
+.row.three-images figure {
     flex: 1 1 calc(33.333% - 1rem); /* Ensures the figures take equal space, considering gap */
     max-width: calc(33.333% - 1rem);
-  }
+}
+
+.row.two-images figure {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+}
+
+.row.one-image figure {
+    flex: 1 1 100%; /* Ein Bild, nimmt die gesamte Breite ein */
+    max-width: 100%;
+}
   
-  .row img {
-    width: 100%; /* Ensures the image takes the full width of its container */
+.row img {
+    width: 100%; /* Ensures the image takes the full width of*/
     height: auto;
     object-fit: cover;
-  }
+}
 
-  img{
+img{
     display: flex;
     text-align: center;
     width: 100%; /* Ensures the image takes the full width of its container */
@@ -173,9 +184,9 @@ a:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 5%;
     box-shadow: 5px 5px 100000px rgba(0, 0, 0, 5);
-  }
+}
 
-  footer{
+footer {
     background-image: url(Buch.jpg);
     background-size: 100% auto; /* Das Bild wird skaliert, um den gesamten Hintergrund zu bedecken */
     background-position: center bottom; /* Das Bild wird horizontal zentriert */
@@ -197,4 +208,12 @@ a:hover {
     max-width: 1200px; /* Maximale Breite des Inhalts */
     margin: 0 auto; /* Zentrierte Ausrichtung des Inhalts */
     padding: 20px; /* Innenabstand für den Inhalt */
+} 
+
+.button-div {
+    text-align: center;
+}
+
+#kapitel1, #kapitel2, #kapitel3, #kapitel4, #kapitel5, #kapitel5  {
+    margin-bottom: 1%;
 }
